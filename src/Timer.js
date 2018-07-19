@@ -8,8 +8,15 @@ class Timer extends Component {
   }
 
   // add your code here
+  componentDidMount() {
+    this.interval = setInterval(this.clockTick, 1000)
+    console.log("comDidMou Timer", this)
+  }
 
-
+  componentWillUnmount() {
+    clearInterval(this.interval)
+    console.log("comWillUnm Timer", this)
+  }
 
 
 
