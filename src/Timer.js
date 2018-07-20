@@ -8,7 +8,10 @@ class Timer extends Component {
   }
 
   // add your code here
+  componentDidMount() {
+    this.interval = setInterval(this.clockTick, 1000);
 
+  }
 
 
 
@@ -22,12 +25,19 @@ class Timer extends Component {
       <section className="Timer" style={{background: color}}>
 
         <h1>{ time }</h1>
-        <button onClick={ this.stopClock }>Stop</button>
+        <div><button onClick={ this.stopClock }>Stop</button></div>
+        {/* <div><button onClick={ this.handleStart }>Start</button></div> */}
+
+
         <aside className="mountText">Mounted</aside>
         <small onClick={ this.handleClose }>X</small>
 
       </section>
     );
+  }
+
+  componentWillUnmount() {
+    this.stopClock()
   }
 
   //clock functions
@@ -39,6 +49,11 @@ class Timer extends Component {
 
   stopClock = () => {
     clearInterval(this.interval)
+  }
+
+  handleStart = () => {
+    console.log(this);
+    this.interval = setInterval(this.clockTick, 1000)
   }
 
   // for the 'x' button,
